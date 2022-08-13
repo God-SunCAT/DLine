@@ -1,0 +1,111 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dline剧本制作</title>
+  <script type="text/javascript" src='./xlsx.core.min.js'></script>
+  <script type="text/javascript" src='./jquery-2.1.4.min.js'></script>
+</head>
+ 
+<body>
+  生成剧本适用于Dline Alpha0.8<br>
+  源剧本：<br>
+  头像地址或Base64：<input type="text" id="Avatar"><br>
+  用户名：<input type="text" id="Name"><br>
+  动态简介:<input type="text" id="Introduction"><br>
+  等待时间的单位(ms的倍率，为1则单位为ms):<input type="text" id="MessageWaitMultiple"><br>
+  <input type="file" id="file"><br>
+</body>
+<script>
+    //首先监听input框的变动，选中一个新的文件会触发change事件
+    document.querySelector("#file").addEventListener("change", function () {
+    //获取到选中的文件
+    var file = document.querySelector("#file").files[0];
+    var type = file.name.split('.');
+    if (type[type.length - 1] !== 'xlsx' && type[type.length - 1] !== 'xls') {
+        alert('请导入xlsx或者xls文件');
+        return false;
+    }
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (e) => {
+        const data = e.target.result;
+        var wb = XLSX.read(data, {type:'binary'})
+        const wsname = wb.SheetNames[0]
+        const ws = wb.Sheets[wsname]
+        var obj = XLSX.utils.sheet_to_json(ws, {header: 1})
+        var Dobj = new Object //最终json
+        var Tobj = new Object //临时json
+        var TInfo = new Object
+        TInfo["UserAvatar"] = $("#Avatar").val()
+        TInfo["UserName"] = $("#Name").val()
+        TInfo["UserIntroduction"] = $("#Introduction").val()
+        TInfo["MessageWaitMultiple"] = parseInt($("#MessageWaitMultiple").val())
+        Dobj["Info"] = [TInfo]
+        Dobj["RECORDS"] = []
+        i = 1
+        for(k = 1;k<obj.length - 1;k++){
+            // if(([0] in obj[i]) == true){
+            //     Tobj["Node_ID"] == parseInt(obj[i][0])
+            // }
+            if(([1] in obj[i]) == true){
+                if(obj[i][1] != null){
+                    Tobj["Node_Content"] = String(obj[i][1])
+                }
+            }
+            if(([2] in obj[i]) == true){
+                if(obj[i][2] != null){
+                    Tobj["Options_A"] = String(obj[i][2])
+                }
+            }
+            if(([3] in obj[i]) == true){
+                if(obj[i][3] != null){
+                    Tobj["Options_B"] = String(obj[i][3])
+                }
+            }
+            if(([4] in obj[i]) == true){
+                if(obj[i][4] != null){
+                    Tobj["Options_A_Jump_ID"] = parseInt(obj[i][4])
+                }
+            }
+            if(([5] in obj[i]) == true){
+                if(obj[i][5] != null){
+                    Tobj["Options_B_Jump_ID"] = parseInt(obj[i][5])
+                }
+            }
+            if(([6] in obj[i]) == true){
+                if(obj[i][6] != null){
+                    Tobj["WaitTime"] = parseInt(obj[i][6])
+                }
+            }
+            if(([7] in obj[i]) == true){
+                if(obj[i][1] != null){
+                    if(obj[i][7] != 1){
+                    Tobj["Message_Type"] = parseInt(obj[i][7])
+                }
+                }
+            }
+            
+            Dobj["RECORDS"][i - 1] = Tobj
+            Tobj = new Object
+            i++
+        }
+        console.log(Dobj)
+        var Sdata =JSON.stringify(Dobj)
+        saveAs("剧本.json",Sdata,"text/plain;charset=utf-8")
+    }
+  });
+function saveAs(name, data, type) {
+    const element = document.createElementNS("http://www.w3.org/1999/xhtml", "a"),
+        ev = document.createEvent("MouseEvents"),
+        urlObject = window.URL || window.webkitURL || window,
+        export_blob = new Blob([data], {type: type ? type : ''});
+    element.href = urlObject.createObjectURL(export_blob);
+    element.download = name;
+    ev.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    element.dispatchEvent(ev);
+    urlObject.revokeObjectURL(element.href);
+    element.href = '';
+}
+</script>
+ 
+</html>
