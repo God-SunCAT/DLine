@@ -29,7 +29,10 @@ Android Webview功能:<br>
 3. 剧本生成器：https://god-suncat.github.io/DLine//StoryMaker-Alpha0.8/StoryDeal.html
 
 
-
+-------------------------
+1. 剧本编写推荐图片格式：webp
+2. 剧本编写推荐 图片转Base64 网站：https://c.runoob.com/front-end/59/
+3. 剧本编写建议参考已有剧本
 -------------------------
 剧本模板见StoryEdite目录。
 请认真读完以下内容再写剧本。
