@@ -147,6 +147,8 @@ function PassCard_Upload(){
             PMessageID = 0
             localStorage.setItem("ChatHistory",null)
             ChatHistory = null
+            localStorage.setItem("SpaceLog",null)
+            SpaceLog = null
             El_ChatRoom.innerHTML=""
             SetOpinionState(3)
             Worker1.postMessage([1,reader.result,SLast_Time,1])
@@ -177,6 +179,8 @@ function Click_PassCard_LinkChange_Button(){
     PMessageID = 0
     localStorage.setItem("ChatHistory",null)
     ChatHistory = null
+    localStorage.setItem("SpaceLog",null)
+    SpaceLog = null
     El_ChatRoom.innerHTML=""
     SetOpinionState(3)
     GetStoryFromURL(Link)
