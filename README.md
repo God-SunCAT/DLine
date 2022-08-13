@@ -23,6 +23,14 @@ Android Webview功能:<br>
 [ ][Alpha1.0]改善存储架构<br>
 
 -------------------------
+各版本网页版链接目录
+1. Alpha0.8
+2. 网页版：https://god-suncat.github.io/DLine/Web-Code-Alpha0.8/Dline.html
+3. 剧本生成器：https://god-suncat.github.io/DLine//StoryMaker-Alpha0.8/StoryDeal.html
+
+
+
+-------------------------
 剧本模板见StoryEdite目录。
 请认真读完以下内容再写剧本。
 1. 节点序号不够用请自行增加，但绝对不能断掉顺序且必须从1开始(从1-N 中间一个数都不能乱且不能少)
