@@ -15,7 +15,7 @@ Web 功能:
 [v][Alpha0.8]可通过网址或文件格式导入剧本
 
 Android Webview功能:
-[v][Alpha0.8]剧本大小不限额
+[v][Alpha0.8]剧本大小不限额<br>
 [v][Alpha0.8]可通过网址或文件格式导入剧本
 [ ][Alpha1.0]后台消息通知
 [ ][Alpha1.0]改善存储架构
