@@ -13,85 +13,120 @@
   用户名：<input type="text" id="Name"><br>
   动态简介:<input type="text" id="Introduction"><br>
   等待时间的单位(ms的倍率，为1则单位为ms):<input type="text" id="MessageWaitMultiple"><br>
-  <input type="file" id="file"><br>
+  <input type="file" multiple="multiple" id="file"><br>
 </body>
 <script>
     //首先监听input框的变动，选中一个新的文件会触发change事件
     document.querySelector("#file").addEventListener("change", function () {
     //获取到选中的文件
-    var file = document.querySelector("#file").files[0];
-    var type = file.name.split('.');
-    if (type[type.length - 1] !== 'xlsx' && type[type.length - 1] !== 'xls') {
-        alert('请导入xlsx或者xls文件');
-        return false;
-    }
-    const reader = new FileReader();
-    reader.readAsBinaryString(file);
-    reader.onload = (e) => {
-        const data = e.target.result;
-        var wb = XLSX.read(data, {type:'binary'})
-        const wsname = wb.SheetNames[0]
-        const ws = wb.Sheets[wsname]
-        var obj = XLSX.utils.sheet_to_json(ws, {header: 1})
-        var Dobj = new Object //最终json
-        var Tobj = new Object //临时json
-        var TInfo = new Object
-        TInfo["UserAvatar"] = $("#Avatar").val()
-        TInfo["UserName"] = $("#Name").val()
-        TInfo["UserIntroduction"] = $("#Introduction").val()
-        TInfo["MessageWaitMultiple"] = parseInt($("#MessageWaitMultiple").val())
-        Dobj["Info"] = [TInfo]
-        Dobj["RECORDS"] = []
-        i = 1
-        for(k = 1;k<obj.length - 1;k++){
-            // if(([0] in obj[i]) == true){
-            //     Tobj["Node_ID"] == parseInt(obj[i][0])
-            // }
-            if(([1] in obj[i]) == true){
-                if(obj[i][1] != null){
-                    Tobj["Node_Content"] = String(obj[i][1])
+    var selectFileList=document.querySelector("#file").files
+    // 判断文件格式和大小
+    for (let i = 0; i < selectFileList.length; i++) {
+        // debugger
+        var Sdata = ""
+        var ic = 0
+        var pc = 0
+        var ifc = false
+        const file = selectFileList[i]
+        let fileType = file.name.split('.').pop()
+        if(fileType == "xlsx" || fileType == "xls"){
+            const reader = new FileReader();
+            reader.readAsBinaryString(file);
+            reader.onload = (e) => {
+                const data = e.target.result;
+                var wb = XLSX.read(data, {type:'binary'})
+                const wsname = wb.SheetNames[0]
+                const ws = wb.Sheets[wsname]
+                var obj = XLSX.utils.sheet_to_json(ws, {header: 1})
+                var Dobj = new Object //最终json
+                var Tobj = new Object //临时json
+                var TInfo = new Object
+                TInfo["UserAvatar"] = $("#Avatar").val()
+                TInfo["UserName"] = $("#Name").val()
+                TInfo["UserIntroduction"] = $("#Introduction").val()
+                TInfo["MessageWaitMultiple"] = parseInt($("#MessageWaitMultiple").val())
+                Dobj["Info"] = [TInfo]
+                Dobj["RECORDS"] = []
+                i = 1
+                for(k = 1;k<obj.length - 1;k++){
+                    // if(([0] in obj[i]) == true){
+                    //     Tobj["Node_ID"] == parseInt(obj[i][0])
+                    // }
+                    if(([1] in obj[i]) == true){
+                        if(obj[i][1] != null){
+                            Tobj["Node_Content"] = String(obj[i][1])
+                        }
+                    }
+                    if(([2] in obj[i]) == true){
+                        if(obj[i][2] != null){
+                            Tobj["Options_A"] = String(obj[i][2])
+                        }
+                    }
+                    if(([3] in obj[i]) == true){
+                        if(obj[i][3] != null){
+                            Tobj["Options_B"] = String(obj[i][3])
+                        }
+                    }
+                    if(([4] in obj[i]) == true){
+                        if(obj[i][4] != null){
+                            Tobj["Options_A_Jump_ID"] = parseInt(obj[i][4])
+                        }
+                    }
+                    if(([5] in obj[i]) == true){
+                        if(obj[i][5] != null){
+                            Tobj["Options_B_Jump_ID"] = parseInt(obj[i][5])
+                        }
+                    }
+                    if(([6] in obj[i]) == true){
+                        if(obj[i][6] != null){
+                            Tobj["WaitTime"] = parseInt(obj[i][6])
+                        }
+                    }
+                    if(([7] in obj[i]) == true){
+                        if(obj[i][1] != null){
+                            if(obj[i][7] != 1){
+                            Tobj["Message_Type"] = parseInt(obj[i][7])
+                        }
+                        }
+                    }
+                    
+                    Dobj["RECORDS"][i - 1] = Tobj
+                    Tobj = new Object
+                    i++
+                }
+                Sdata =JSON.stringify(Dobj)
+                for (let i = 0; i < selectFileList.length; i++) {
+                    const file = selectFileList[i]
+                    let FileSplit = file.name.split('.')
+                    if(FileSplit.length = 2){
+                        if(FileSplit[1] != "xlsx" && FileSplit[1] != "xls" && FileSplit[1] != ""){
+                            const reader = new FileReader();
+                            pc++
+                            reader.readAsDataURL(file);
+                            reader.onload = (e) => {
+                                ic++
+                                const data = e.target.result;
+                                Sdata = Sdata.replace("[$$$" + FileSplit[0] + "$$$]",data)
+                                while(ifc == false){continue}
+                                if(ic >= pc){
+                                    saveAs("剧本.json",Sdata,"text/plain;charset=utf-8")
+                                }
+                            }
+                        }
+                    }
+                }
+                if(i >= selectFileList.length){
+                    ifc = true
                 }
             }
-            if(([2] in obj[i]) == true){
-                if(obj[i][2] != null){
-                    Tobj["Options_A"] = String(obj[i][2])
-                }
-            }
-            if(([3] in obj[i]) == true){
-                if(obj[i][3] != null){
-                    Tobj["Options_B"] = String(obj[i][3])
-                }
-            }
-            if(([4] in obj[i]) == true){
-                if(obj[i][4] != null){
-                    Tobj["Options_A_Jump_ID"] = parseInt(obj[i][4])
-                }
-            }
-            if(([5] in obj[i]) == true){
-                if(obj[i][5] != null){
-                    Tobj["Options_B_Jump_ID"] = parseInt(obj[i][5])
-                }
-            }
-            if(([6] in obj[i]) == true){
-                if(obj[i][6] != null){
-                    Tobj["WaitTime"] = parseInt(obj[i][6])
-                }
-            }
-            if(([7] in obj[i]) == true){
-                if(obj[i][1] != null){
-                    if(obj[i][7] != 1){
-                    Tobj["Message_Type"] = parseInt(obj[i][7])
-                }
-                }
-            }
-            
-            Dobj["RECORDS"][i - 1] = Tobj
-            Tobj = new Object
-            i++
         }
-        console.log(Dobj)
-        var Sdata =JSON.stringify(Dobj)
-        saveAs("剧本.json",Sdata,"text/plain;charset=utf-8")
+        if(Sdata.length >=1){
+            break
+        }
+        // if(file.size / 1024 > 300) {
+        //   this.$message.error('上传文件大小不能超过300kb')
+        //   return false
+        // }
     }
   });
 function saveAs(name, data, type) {
