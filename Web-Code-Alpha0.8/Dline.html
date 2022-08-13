@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="./Dline.css">
+    <!-- <link rel="shortcut icon" href="./favicon.ico" >  -->
+    <title>Dline</title>
+</head>
+<body>
+    <div class="Activity" id="Activity_Chat">
+        <div class="Activity_Header" id="Activity_Chat_Header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" onclick="Click_Menu()" class="IconMenu">
+                <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+            </svg>
+            <div class="Chat_Header_Title">
+              <div class="Chat_Header_Name" id="Chat_Header_Name">Unknown</div>
+              <div class="Chat_Header_State" id="Chat_Header_State">离线</div>
+            </div>
+            <div class="circle" onclick="Click_Avatar()">
+                <img src="./img/Avatar.jpg" id="Chat_Avatar">
+            </div>
+        </div>
+        <div class="chat_box" id="ChatBox">
+            <div id="ChatRoom" class="chat_message">
+            </div>
+        </div>
+        <div class="Chat_Opinion" id="Chat_OpinionBox">
+            <!-- <img class="me_photo" src="./img/IMG_0731.png" alt=""> -->
+            <button type="button" onclick="Click_OpinionA()" id="OpinionA">OpinionA</button>
+            <button type="button" onclick="Click_OpinionB()" id="OpinionB">OpinionB</button>
+        </div>
+    </div>
+    <div class="Activity" id="Activity_Set">
+        <div class="Activity_Header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" onclick="Click_Return_Set()" class="IconReturn">
+                <path fill-rule="evenodd" d="M15.28 5.22a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 000 1.06l6.25 6.25a.75.75 0 101.06-1.06L9.56 12l5.72-5.72a.75.75 0 000-1.06z"></path>
+            </svg>
+            <div class="Set_Header_Title">Set</div>
+        </div>
+        <!-- Set 剧本 -->
+        <div class="Set_Box">
+            <div class="Set_Box_Label">变更通行证:</div>
+            <input type="text" class="Set_Box_LinkInput" placeholder="PassCard" id="Set_Box_LinkInput">
+            <button type="button" onclick="Click_PassCard_LinkChange_Button()" id="PassCard_LinkChange_Button">确认变更</button>
+            <button type="file" onclick="Click_PassCard_Upload_Button()" id="PassCard_Upload_Button">变更文件通行证</button>
+            <input type="file" id="PassCard_Upload" style="display: none" onchange="PassCard_Upload()">
+            <div class="Set_Box_Label_2">注:变更后会清除建立在原通行证上的所有内容</div>
+            <div class="Set_Box_BottomBox">
+                <!-- Alpha, Beta, Release -->
+                <div class="Set_Box_Label_2">Dline</div>
+                <div class="Set_Box_Label_2" style="margin-top:1px;">Version:Alpha 0.8</div>
+                <div class="Set_Box_Label_2" style="margin-top:1px;">Made by BXV</div>
+                <div class="Set_Box_Label_2" style="margin-top:1px;">Dline:所有人都能编写剧本的AVG平台</div>
+            </div>
+        </div>
+    </div>
+    <div class="Activity" id="Activity_Space">
+        <div class="Activity_Header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" onclick="Click_Return_Space()" class="IconReturn">
+                <path fill-rule="evenodd" d="M15.28 5.22a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 000 1.06l6.25 6.25a.75.75 0 101.06-1.06L9.56 12l5.72-5.72a.75.75 0 000-1.06z"></path>
+            </svg>
+            <div class="Set_Header_Title">Space</div>
+        </div>
+        <div class="Space_ContentBox">
+            <div class="Space_InfoMessage">
+                <div class="Space_circle">
+                    <img src="./img/Avatar.jpg" id="Space_Avatar">
+                </div>
+                <div class="Space_Name" id="Space_Name">Unknown</div>
+                <!-- 下面这条注释不准删！谁删我跟谁急！ -->
+                <!-- 月亮沉入海底，氤氲了大海的诗意 -->
+                
+                <div class="Space_Introduction" id="Space_Introduction">我好懒...简介都懒得写...</div>
+            </div>
+            <hr>
+            <div id="Space_LogBox">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./jquery-2.1.4.min.js"></script>
+<script src="./Dline.js"></script>
+</html>

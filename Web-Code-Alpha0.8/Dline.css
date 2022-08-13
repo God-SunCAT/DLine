@@ -1,0 +1,342 @@
+html{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.Activity{
+    position: fixed;
+    background-color: black;
+    width:100%;
+    height:100%
+}
+
+.Activity_Header{
+    background-color: black;
+    width:100%;
+    height:120px;
+}
+
+.IconReturn{
+    width:10%;
+    height:100%;
+    float: left;
+    stroke:rgb(206,202,195);
+    fill:rgb(206,202,195);
+    position: relative;
+}
+.IconMenu{
+    width:10%;
+    height:100%;
+    float: left;
+    stroke:rgb(206,202,195);
+    fill:rgb(206,202,195);
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+.Chat_Header_Title{
+    float: left;
+    width: calc(90% - 120px);;
+    height: 120px;
+}
+.Chat_Header_Name{
+    color:rgb(206,202,195);
+    width:100%;
+    height:50%;
+    float: left;
+    text-align: center;
+    font-size: 300%;
+    margin-top:1.6%;
+}
+.Chat_Header_State{
+    color:rgb(206,202,195);
+    width:100%;
+    height:50%;
+    float:left;
+    text-align: center;
+    font-size: 140%;
+}
+
+.Chat_Opinion{
+    /* height: 10%; */
+    height:200px;
+    overflow-y: hidden;
+    min-width: 100%;
+    position:absolute;
+    bottom: 0%;
+    background-color: rgb(21, 21, 21);
+}
+
+.Chat_Opinion button{
+    color:rgb(255, 255, 255);
+    background-color: rgb(82, 82, 82);;
+    margin-left:2%;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    width: 96%;
+    height: 90px;
+    font-size: 250%;
+    border-radius: 15px;
+}
+
+
+.circle{
+    margin-top: 10px;
+    float: left;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.circle img{
+    height: 100%;
+}
+/*Chat Css*/
+.chat_box{
+    width: 100%;
+    height: 100%;
+    /* overflow-y: scroll; */
+    background-color: black;
+    position: relative;
+    /* display: flex;
+    flex-direction: column; 
+    padding: 0 20px; */
+    /* border-right: 1px solid #b1b1b1; */
+}
+.chat_box .chat_message{
+    position: fixed;
+    margin-top:1%;
+    margin-left:1%;
+    width: 98%;
+    height: calc(100% - 120px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    /* padding: 0 20px; */
+}
+
+.message_row{
+    display: grid;
+    grid-template-columns: 70%;
+    margin-bottom: 20px;
+}
+.message-text{
+    padding: 9px 14px;
+    margin-bottom: 5px;
+}
+.message-time{
+    width: 100%;
+    color: #777;
+    font-size: 150%;
+}
+.other-message .message-time{
+    text-align: left;
+    /* width: 66px;
+    margin-left: 65px; */
+    /* 时间左边 */
+}
+.you-message{
+    justify-content: end;
+}
+.you-message .message-time{
+    text-align: right;
+}
+.you-message .message-content{
+    justify-items: end;
+}
+.you-message .message-text{
+    color: rgb(255, 255, 255);
+    background-color: rgb(113, 168, 248);
+    border: 1px solid rgb(113, 168, 248);
+    border-radius: 14px 14px 0 14px;
+    font-size: 300%;
+}
+.other-message{
+    justify-items: start;
+}
+.other-message .message-content{
+    /* grid-template-columns: 63px 1fr;
+    grid-column-gap: 15px; */
+    /* 聊天框左边 */
+}
+.other-message .message-text{
+    color: rgb(255, 255, 255);
+    background-color: rgb(26, 26, 26);
+    border: 1px solid rgb(26, 26, 26);
+    border-radius: 14px 14px 14px 0;
+    font-size: 300%;
+}
+.message-content{
+    display: grid;
+}
+.head{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.ejIcon{
+    width: 150px;
+        /* position: fixed; */height: auto;
+}
+.me_photo{
+    width: 100%;
+}
+.me_photo img{
+    width: 100%;
+}
+.System-message-text{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 2%;
+}
+
+.Set_Header_Title{
+    color:rgb(206,202,195);
+    float: left;
+    width: 90%;
+    height: 120px;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    font-size: 80px;
+    /* margin-top:15px; */
+}
+.Set_Box{
+    width: 100%;
+    height: 100%;
+}
+.Set_Box_LinkInput{
+    background-color: #1f1f1f;
+    color: #ffffff;
+    margin-top: 20px;
+    height: 80px;
+    font-size: 50px;
+    width: 100%;
+}
+.Set_Box_Label{
+    color: rgb(206,202,195);
+    margin-left:2%;
+    font-size: 50px;
+}
+.Set_Box_Label_2{
+    color: rgb(206,202,195);
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+}
+.Set_Box button{
+    color:rgb(255, 255, 255);
+    background-color: #1f1f1f;;
+    margin-left:2%;
+    margin-top: 10px;
+    width: 96%;
+    height: 90px;
+    font-size: 250%;
+    border-radius: 15px;
+}
+.Set_Box_BottomBox{
+    width: 100%;
+    height: 200px;
+    bottom: 0%;
+    position:absolute;
+}
+.Space_ContentBox{
+    /* position: fixed; */
+    /* height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    flex-direction: column; */
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 120px);
+    overflow-y: scroll;
+    flex-direction: column;
+}
+.Space_ContentBox hr{
+    float: left;
+    width: 100%;
+    height:0.02vh;
+    background-color: #747272;
+    border:none;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+.Space_InfoMessage{
+    float: left;
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+}
+.Space_circle{
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+.Space_circle img{
+    height: 100%;
+}
+.Space_Name{
+    align-items: center;
+    float: left;
+    width: calc(100% - 10px - 180px - 30px);
+    margin-top: 30px;
+    margin-left:30px;
+    color: rgb(206,202,195);
+    font-size: 80px;
+}
+.Space_Introduction{
+    float: left;
+    align-items: center;
+    float: left;
+    width: calc(100% - 10px - 180px - 30px);
+    margin-left:30px;
+    color: rgb(206,202,195);
+    font-size: 30px;
+}
+.Space_Log{
+    float: left;
+    height: auto;
+    width: 100%;
+}
+.Space_Log .Content{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: rgb(206,202,195);
+    font-size: 38px;
+}
+.Space_Log img{
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: cover;
+
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.Space_Log .date{
+    /* align-items: center; */
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+    width: calc(100% - 10px);
+    color: rgba(206, 202, 195, 0.692);
+    font-size: 30px;
+}
